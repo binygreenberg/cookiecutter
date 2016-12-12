@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}User: {{ object.username }}{% endblock %}
+
+{% block content %}
+<div class="container">
+
+  <div class="row">
+    <div class="col-sm-12">
+
+      <h2>{{ object.username }}</h2>
+      {% if object.name %}
+        <p>{{ object.name }}</p>
+      {% endif %}
+    </div>
+  </div>
+
+{% if object == request.user %}
+<!-- Action buttons -->
+<div class="row">
+
+  <div class="col-sm-12">
+    <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
+    <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
+    <!-- Your Stuff: Custom user template urls -->
+    {% verbatim %}
+
+    <div ng-app="fileUpload" ng-controller="MyCtrl">
+      <h4>Upload on file select</h4>
+       <button type="file" ngf-select="uploadFiles($file, $invalidFiles)"
+          accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">Select File</button>
+      <br><br>
+      File:
+      <div style="font:smaller">{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
+          <span class="progress" ng-show="f.progress >= 0">
+              <div style="width:{{f.progress}}%"
+                   ng-bind="f.progress + '%'"></div>
+          </span>
+      </div>
+      {{errorMsg}}
+    </div>
+    {% endverbatim %}
+
+  </div>
+
+</div>
+<!-- End Action buttons -->
+{% endif %}
+
+
+</div>
+{% endblock content %}
+
+{% block javascript %}
+
+      <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>-->
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+      <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>-->
+      <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"></script>-->
+      <script src="{% static 'js/fileupload/ng-file-upload.min.js' %}"></script>
+      <!--<script src="{% static 'js/fileupload/ng-file-upload-all.min.js' %}"></script>-->
+      <script src="{% static 'js/fileupload/myApp.js' %}"></script>
+      <!--<script src="{% static 'js/fileupload/ng-file-upload.min.js' %}"></script>-->
+
+<!--&lt;!&ndash; The jQuery UI widget factory, can be omitted if jQuery UI is already included &ndash;&gt;-->
+      <!--<script src="{% static 'js/fileupload/jquery.ui.widget.js' %}"></script>-->
+<!--&lt;!&ndash; The Load Image plugin is included for the preview images and image resizing functionality &ndash;&gt;-->
+      <!--<script src="{% static 'js/fileupload/load-image.min.js' %}"></script>-->
+<!--&lt;!&ndash; The Canvas to Blob plugin is included for image resizing functionality &ndash;&gt;-->
+      <!--<script src="{% static 'js/fileupload/canvas-to-blob.min.js' %}"></script>-->
+<!--&lt;!&ndash; blueimp Gallery script &ndash;&gt;-->
+      <!--<script src="{% static 'js/fileupload/jquery.blueimp-gallery.min.js' %}"></script>-->
+<!--&lt;!&ndash; The Iframe Transport is required for browsers without support for XHR file uploads &ndash;&gt;-->
+      <!--<script src="{% static 'js/fileupload/jquery.iframe-transport.js' %}"></script>-->
+<!--&lt;!&ndash; The basic File Upload plugin &ndash;&gt;-->
+      <!--<script src="{% static 'js/fileupload/jquery.fileupload.js' %}"></script>-->
+<!--&lt;!&ndash; The File Upload processing plugin &ndash;&gt;-->
+      <!--<script src="{% static 'js/fileupload/jquery.fileupload-process.js' %}"></script>-->
+<!--&lt;!&ndash; The File Upload image preview & resize plugin &ndash;&gt;-->
+      <!--<script src="{% static 'js/fileupload/jquery.fileupload-image.js' %}"></script>-->
+<!--&lt;!&ndash; The File Upload validation plugin &ndash;&gt;-->
+      <!--<script src="{% static 'js/fileupload/jquery.fileupload-validate.js' %}"></script>-->
+<!--&lt;!&ndash; The File Upload Angular JS module &ndash;&gt;-->
+      <!--<script src="{% static 'js/fileupload/jquery.fileupload-angular.js' %}"></script>-->
+<!--&lt;!&ndash; The main application script &ndash;&gt;-->
+      <!--<script src="{% static 'js/fileupload/app.js' %}"></script>-->
+      <!--<script src="{% static 'js/csrf.js' %}"></script>-->
+{% endblock javascript %}

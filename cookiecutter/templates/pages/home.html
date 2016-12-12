@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>Makeup Artists</h1>
+    <p>Something Cool</p>
+  </div>
+</div>
+
+<div class="container" ng-app="MyApp" ng-controller="ProfileController">
+  {% verbatim %}
+  <div class="row">
+    <div class="col-md-3 col-sm-4 col-xs-6" ng-repeat="profile in profiles">
+      <div class="panel panel-primary">
+        <div class="panel-heading">{{profile.description}}</div>
+        <div class="panel-body"><img src={{profile.images[0]}} class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-footer">{{profile.location}}</div>
+      </div>
+    </div>
+  </div>
+  {% endverbatim %}
+</div>
+
+{% endblock content %}
